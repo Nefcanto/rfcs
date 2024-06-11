@@ -5,6 +5,7 @@
 # Summary
 
 Reflection lets dynamic applications analyze a given component and extract information about it.
+It also enables extracting information about a given application.
 
 # Basic example
 

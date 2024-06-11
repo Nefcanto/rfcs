@@ -4,7 +4,7 @@
 
 # Summary
 
-Reflection let's dynamic applications to analyze a given component and extract information about it.
+Reflection lets dynamic applications analyze a given component and extract information about it.
 
 # Basic example
 
@@ -54,7 +54,7 @@ Knowing about a passed component opens the door for more dynamic systems, yet wi
 Let's create a dynamic `<Icon>` component. It can accept a wide range of inputs. Let's support a range of possible inputs:
 
 - Inline SVG: `<Icon show={<svg></svg>} />`
-- Third party component:   
+- Third-party component:   
 ```
 import SettingsIcon from "@mui/icons-material/Settings"   
 <Icon show={SettingsIcon} />
@@ -103,12 +103,12 @@ const Icon = ({ show }) => {
 }
 ```
 
-Reflection has been around in many languages and the have proven to be a great tool when it comes to make things more dynamic.
+Reflection has been around in many languages and has proven to be a great tool for making things more dynamic.
 
 These are real requirements we face today and we solve them using tricks:
 
-- What actions are marked with a boolean `superAdmin` attribute. We should not show them if the current user is not a super admin.
-- Is this `filters` prop passed a list of filters or a single filter.   
+- What actions are marked with a boolean `superAdmin` attribute? We should not show them if the current user is not a super admin.
+- Is this `filters` prop passed a list of filters or a single filter?   
 ```
 const filters = <>
     <DataTypeFilter />
@@ -116,7 +116,7 @@ const filters = <>
 </>
 const alternativeFilters = <DataTypeFilter />
 ```
-- Does this action has a dialog associated with it? Should I wrap it inside a `<DialogContext.Provider>` or not?
+- Does this action have a dialog associated with it? Should I wrap it inside a `<DialogContext.Provider>` or not?
 ```
 var actions = entity => <>
     <Action
@@ -133,10 +133,23 @@ const Actions = ({ actions }) => {
 }
 ```
 
+This is a list of ideas that can be developed inside the `react-reflection`:
+
+- Retrieving information about the app itself => something like getComponents
+- Finding a specific component => getComponent("ComponentName")
+- Get information about props => getProps(component)
+- Get one specific prop => getProp(component, "PropName")
+- Check for the presence of a prop => hasProp(component, "PropName")
+- Get the list of hooks used in the component => getHooks(component)
+- Get the list of states used in the component => getStates(component)
+- Get the list of dependencies for a given hook => getDependencies(hook) or getDependencies(component, "HookName")
+- Getting the type of an object (not checking if it is something) => getType(object) => These could be Fragment, Array, FunctionComponent, ClassComponent, Hook, State, etc.
+- Creating a dynamic instance of a component if possible, without being in DOM => createInstance(component)
+
 # Drawbacks
 
-Since the React team has published the dev tool, I guess the infrastructure for extracting data about a given component is already in the React core.
-Thus I see no drawbacks in this RFC.
+Since the React team has published the dev tool, the infrastructure for extracting data about a given component is already in the React core.
+So, I don't see any drawbacks in this RFC.
 
 # Alternatives
 
@@ -248,7 +261,7 @@ export default Unify
 
 # Adoption strategy
 
-There is no change at all. There is not need for codemods. No developer needs to change his knowledge about the React if he does not want to use it.
+There is no change at all. There is no need for codemods. No developer needs to change his knowledge about React if he does not want to use it.
 
 This can even be implemented in another library called `react-reflection`.
 
